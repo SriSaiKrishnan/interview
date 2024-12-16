@@ -1,0 +1,14 @@
+{
+  "Bulls": {
+    "url": "https://www.nba.com/bulls/",
+    "verificationText": "SHOP POPULAR ITEMS"
+  },
+  "Warriors": {
+    "searchTest": "This is search text"
+  },
+  "Sixers": {
+    "url": "https://www.nba.com/sixers",
+    "searchTest": "This is search text"
+  }
+}
+

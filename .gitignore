@@ -15,3 +15,9 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+.idea
+allure-results
+footer-links.csv
+jacket-details.txt
+logs
+.DS_Store
