@@ -6,7 +6,6 @@ import io.cucumber.java.Before;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import report.ExtentReport;
 import java.util.Properties;
 
 public class Hooks {
@@ -28,7 +27,6 @@ public class Hooks {
     public void tearDown() {
         logger.info("Closing WebDriver...");
         driverFactory.quitDriver();
-        ExtentReport.removeTest();
     }
 
 }

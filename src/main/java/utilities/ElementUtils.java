@@ -8,7 +8,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import report.ExtentLogger;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,7 +153,6 @@ public class ElementUtils {
     public void verifyExactText(WebElement element, String expectedText){
         if(getText(element).equals(expectedText)){
             logger.info("The text" + getText(element) + "matches with the value: " +expectedText);
-            ExtentLogger.pass("The text: " + getText(element) + " is matched with expected text" ,true);
         }else {
             logger.error("The text" + getText(element) + "not matches with the value: " +expectedText);
         }

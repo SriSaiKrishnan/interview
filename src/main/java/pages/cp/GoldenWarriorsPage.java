@@ -27,21 +27,19 @@ public class GoldenWarriorsPage extends BasePage {
 
     private String cardRow = "(//div[@class='product-card row']/div[2])";
 
-    private String filePath = "/jacket-details.txt";
-
     public GoldenWarriorsPage(WebDriver driver){
         super(driver);
         elementUtils = new ElementUtils(driver);
         writeToTextFile = new WriteToTextFile();
-        writeToTextFile.deleteFileIfExists(AppConstants.USER_DIR + filePath );
     }
 
-    public void selectJackets(){
+    public GoldenWarriorsPage selectJackets(){
         logger.info("Selecting the radio button jackets");
         elementUtils.click(eleJackets);
+        return new GoldenWarriorsPage(driver);
     }
 
-    public void extractJacketData(){
+    public GoldenWarriorsPage extractJacketData(){
         List<WebElement> pageCounter = elementUtils.locateElements("xpath",pagination);
         int count = pageCounter.size()-2;
         for (int i=1; i<count; i++){
@@ -50,9 +48,10 @@ public class GoldenWarriorsPage extends BasePage {
             List<WebElement> cardRows  =  elementUtils.locateElements("xpath",cardRow);
             for (int j=1; j<=cardRows.size();j++){
                 WebElement text = driver.findElement(By.xpath(cardRow+"["+j+"]"));
-                writeToTextFile.writeToTextFile(text.getText(),filePath);
+                writeToTextFile.writeToTextFile(text.getText(), AppConstants.TEXT_FILE_PATH);
             }
         }
+        return new GoldenWarriorsPage(driver);
     }
 
 }

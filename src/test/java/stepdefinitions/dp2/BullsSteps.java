@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.dp2.BullsHomePage;
-import report.ExtentReport;
 import runners.TestRunner;
 
 public class BullsSteps {
@@ -23,7 +22,6 @@ public class BullsSteps {
 
     @Given("the user launches the bulls page")
     public void the_user_launches_the_bulls_page(){
-        ExtentReport.createTest("Find all the hyperlinks in the Footer");
         driver = DriverFactory.getDriver();
         bullsHomePage = new BullsHomePage(driver);
     }

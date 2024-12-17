@@ -7,7 +7,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import pages.dp1.SixersPage;
-import report.ExtentReport;
 import runners.TestRunner;
 
 public class SixersSteps {
@@ -22,7 +21,6 @@ public class SixersSteps {
 
     @Given("the user launches the sixers page")
     public void the_user_launches_the_sixers_page(){
-        ExtentReport.createTest("Get the sixers ticket menu title and count");
         driver = DriverFactory.getDriver();
         sixersPage = new SixersPage(driver);
     }

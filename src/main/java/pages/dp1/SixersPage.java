@@ -7,7 +7,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.ElementUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,27 +35,31 @@ public class SixersPage extends BasePage {
         elementUtils = new ElementUtils(driver);
     }
 
-    public void navigateToSixersPage(String url){
+    public SixersPage navigateToSixersPage(String url){
         elementUtils.navigateTo(url);
+        return new SixersPage(driver);
     }
 
-    public void getTicketMenuCount(){
+    public SixersPage getTicketMenuCount(){
         List<WebElement> ticketMenus = elementUtils.locateElements("xpath", eleTicketsMenu);
         int ticketMenuCount = ticketMenus.size();
         logger.info("Ticket Menu Count is " + ticketMenuCount);
+        return new SixersPage(driver);
     }
 
-    public void clickAndSearch(WebElement eleSearch, String text){
+    public SixersPage clickAndSearch(WebElement eleSearch, String text){
         elementUtils.click(eleSearch);
         elementUtils.sendKeys(eleSearchText,text);
         elementUtils.click(eleCloseSearch);
+        return new SixersPage(driver);
     }
 
-    public void mouseOverTicketMenu(){
+    public SixersPage mouseOverTicketMenu(){
         elementUtils.mouseOverElement(eleTicket);
+        return new SixersPage(driver);
     }
 
-    public void verifyTicketMenu(String text){
+    public SixersPage verifyTicketMenu(String text){
         clickAndSearch(eleSearch,text);
         clickAndSearch(eleSearch,text);
         clickAndSearch(eleSearch,text);
@@ -72,6 +75,7 @@ public class SixersPage extends BasePage {
             logger.info(ticketMenu);
             ticketMenuList.add(ticketMenu);
         }
+        return new SixersPage(driver);
     }
 
 }

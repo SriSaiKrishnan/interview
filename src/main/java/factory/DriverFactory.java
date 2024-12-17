@@ -11,7 +11,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import report.ExtentReport;
+import utilities.WriteToCSV;
+import utilities.WriteToTextFile;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +26,8 @@ public class DriverFactory {
 
     Properties properties;
     OptionsManager optionsManager;
+    WriteToTextFile writeToTextFile;
+    WriteToCSV writeToCSV;
     public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
     private static final Logger logger = LogManager.getLogger(DriverFactory.class);
 
@@ -32,7 +36,8 @@ public class DriverFactory {
         String browserName = properties.getProperty("browser");
         logger.info("browser name is : " + browserName);
         optionsManager = new OptionsManager(properties);
-        ExtentReport.initReports();
+        writeToTextFile = new WriteToTextFile();
+        writeToCSV = new WriteToCSV();
         switch (browserName.toLowerCase().trim()) {
             case "chrome":
                 if (Boolean.parseBoolean(properties.getProperty("remote"))) {
@@ -64,8 +69,9 @@ public class DriverFactory {
         }
 
         getDriver().manage().deleteAllCookies();
-        getDriver().manage().window().maximize();
         getDriver().get(properties.getProperty("url"));// loginPage
+        writeToTextFile.deleteFileIfExists(AppConstants.USER_DIR + AppConstants.TEXT_FILE_PATH );
+        writeToCSV.deleteFileIfExists(AppConstants.USER_DIR + AppConstants.CSV_FILE_PATH);
         return getDriver();
 
     }
@@ -165,7 +171,6 @@ public class DriverFactory {
                 logger.error("Error while quitting the driver: ", e);
             } finally {
                 tlDriver.remove(); // Remove the driver instance from ThreadLocal
-                ExtentReport.flushReports();
             }
         }
     }

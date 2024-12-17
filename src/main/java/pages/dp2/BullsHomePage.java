@@ -8,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import report.ExtentLogger;
 import utilities.ElementUtils;
 import utilities.WriteToCSV;
 import java.util.ArrayList;
@@ -25,25 +24,23 @@ public class BullsHomePage extends BasePage {
 
     private String footer = "//nav[contains(@class,'text-center')]";
 
-    private String filePath = "/footer-links.csv";
-
     public BullsHomePage(WebDriver driver){
         super(driver);
         elementUtils = new ElementUtils(driver);
         csvUtils = new WriteToCSV();
-        csvUtils.deleteFileIfExists(AppConstants.USER_DIR + filePath);
     }
 
     public int footerNavCount(){
         return elementUtils.locateElements("xpath",footer).size();
     }
 
-    public void verifyHeader(String expectedText, String url){
+    public BullsHomePage verifyHeader(String expectedText, String url){
         elementUtils.navigateTo(url);
         elementUtils.verifyExactText(eleHeader,expectedText);
+        return new BullsHomePage(driver);
     }
 
-    public void retriveFooterLinks(){
+    public BullsHomePage retriveFooterLinks(){
         List<String> links = new ArrayList<>();
         for(int i=0; i<footerNavCount();i++){
             WebElement eleFooter = elementUtils.locateElement("xpath",footer+"["+(i+1)+"]");
@@ -59,14 +56,14 @@ public class BullsHomePage extends BasePage {
                 if(links.contains(link))
                 {
                    logger.error("Duplicate Link " + link);
-                    ExtentLogger.fail("Duplicate Link " + link);
                 }
                 links.add(link);
             }
-            csvUtils.writeCSV(links,filePath);
+            csvUtils.writeCSV(links, AppConstants.CSV_FILE_PATH);
             links.clear();
             logger.info("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         }
+        return new BullsHomePage(driver);
     }
 
 }
