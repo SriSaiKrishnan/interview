@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.dp2.BullsHomePage;
 import runners.TestRunner;
 
@@ -28,7 +29,8 @@ public class BullsSteps {
 
     @When("the page is loaded")
     public void the_page_is_loaded(){
-    bullsHomePage.verifyHeader(bullsData.path("verificationtText").asText(), bullsData.path("url").asText());
+    bullsHomePage.navigateToBullPage(bullsData.path("url").asText());
+        Assert.assertEquals(bullsData.path("title").asText(),bullsHomePage.verifyPageIsNavigated());
     }
 
     @Then("the user get the footer link")

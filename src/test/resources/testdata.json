@@ -1,14 +1,18 @@
 {
   "Bulls": {
     "url": "https://www.nba.com/bulls/",
-    "verificationText": "SHOP POPULAR ITEMS"
+    "verificationText": "Shop Popular Items",
+    "title" : "Bulls - The official site of the NBA for the latest NBA Scores, Stats & News. | NBA.com"
   },
   "Warriors": {
-    "searchTest": "This is search text"
+    "searchTest": "This is search text",
+    "goldenwarriors-title" : "Golden State Warriors Mens Jackets, Mens Pullover Jacket, Warriors Full Zip Jacket | shop.warriors.com",
+    "newandfeatures-title" : "News & Media | NBA.com"
   },
   "Sixers": {
     "url": "https://www.nba.com/sixers",
-    "searchTest": "This is search text"
+    "searchTest": "This is search text",
+    "title" : "Sixers - The official site of the NBA for the latest NBA Scores, Stats & News. | NBA.com"
   }
 }
 

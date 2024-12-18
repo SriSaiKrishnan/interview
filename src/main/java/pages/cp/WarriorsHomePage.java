@@ -71,4 +71,9 @@ public class WarriorsHomePage extends BasePage {
         return new NewsAndFeaturePage(driver);
     }
 
+    public String verifyPageIsNavigated(){
+        String actualTitle = elementUtils.getPageTitle();
+        return actualTitle;
+    }
+
 }

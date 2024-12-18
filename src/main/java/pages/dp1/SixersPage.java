@@ -40,6 +40,11 @@ public class SixersPage extends BasePage {
         return new SixersPage(driver);
     }
 
+    public String verifyPageIsNavigated(){
+        String actualTitle = elementUtils.getPageTitle();
+        return actualTitle;
+    }
+
     public SixersPage getTicketMenuCount(){
         List<WebElement> ticketMenus = elementUtils.locateElements("xpath", eleTicketsMenu);
         int ticketMenuCount = ticketMenus.size();

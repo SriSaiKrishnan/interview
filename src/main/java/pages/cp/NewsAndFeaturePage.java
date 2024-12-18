@@ -36,7 +36,6 @@ public class NewsAndFeaturePage extends BasePage {
         elementUtils = new ElementUtils(driver);
     }
 
-
     public NewsAndFeaturePage clickAndSearch(WebElement eleSearch, String text){
         elementUtils.click(eleSearch);
         elementUtils.sendKeys(eleSearchText,text);

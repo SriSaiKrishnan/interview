@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.cp.GoldenWarriorsPage;
 import pages.cp.WarriorsHomePage;
 import runners.TestRunner;
@@ -14,7 +15,6 @@ public class WarriorsSteps {
 
     private WebDriver driver;
     private WarriorsHomePage warriorsHomePage;
-    private GoldenWarriorsPage goldenWarriorsPage;
     private JsonNode warriorsData;
 
     public WarriorsSteps(){
@@ -35,9 +35,9 @@ public class WarriorsSteps {
 
     @Then("the user is on golden warriors page")
     public void the_user_is_on_golden_warriors_page(){
-        warriorsHomePage.clickOnMens()
-                .selectJackets()
+        warriorsHomePage.clickOnMens().selectJackets()
                 .extractJacketData();
+        Assert.assertEquals(warriorsData.path("goldenwarriors-title").asText(),warriorsHomePage.verifyPageIsNavigated());
     }
 
     @When("the_user_mouse_over_on_sub_menu")
@@ -50,5 +50,7 @@ public class WarriorsSteps {
     public void the_user_is_On_News_and_Features_Page_to_count_the_total_videos(){
         warriorsHomePage.clickOnNewAndFeatures()
                 .getTotalVideoCount(warriorsData.path("searchTest").asText());
+        Assert.assertEquals(warriorsData.path("newandfeatures-title").asText(),warriorsHomePage.verifyPageIsNavigated());
     }
+
 }

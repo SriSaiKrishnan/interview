@@ -6,6 +6,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pages.dp1.SixersPage;
 import runners.TestRunner;
 
@@ -28,6 +29,7 @@ public class SixersSteps {
     @When("the user is navigated to sixers page")
     public void the_user_navigated_to_sixers_page(){
         sixersPage.navigateToSixersPage(sixersData.path("url").asText());
+        Assert.assertEquals(sixersData.path("title").asText(),sixersPage.verifyPageIsNavigated());
     }
 
     @Then("the user count the ticket slides")

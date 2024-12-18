@@ -77,6 +77,25 @@ public class ElementUtils {
         return element.getText();
     }
 
+    public String getPageTitle() {
+        logger.info("Fetching the page title...");
+        try {
+            // Wait for the page to fully load
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(AppConstants.GLOBAL_WAIT));
+            wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
+
+            // Return the page title
+            String pageTitle = driver.getTitle();
+            logger.info("Page title retrieved successfully: " + pageTitle);
+            return pageTitle;
+
+        } catch (Exception e) {
+            logger.error("Failed to fetch the page title", e);
+            return null; // or an appropriate fallback value
+        }
+    }
+
+
     public List<WebElement> locateElements(String locator, String locValue) {
         logger.info("Finding all the elements " + locator + " " + locValue);
         List<WebElement> elements = new ArrayList<>();

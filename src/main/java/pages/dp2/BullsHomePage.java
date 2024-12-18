@@ -34,10 +34,14 @@ public class BullsHomePage extends BasePage {
         return elementUtils.locateElements("xpath",footer).size();
     }
 
-    public BullsHomePage verifyHeader(String expectedText, String url){
+    public BullsHomePage navigateToBullPage(String url){
         elementUtils.navigateTo(url);
-        elementUtils.verifyExactText(eleHeader,expectedText);
         return new BullsHomePage(driver);
+    }
+
+    public String verifyPageIsNavigated(){
+        String actualTitle = elementUtils.getPageTitle();
+        return actualTitle;
     }
 
     public BullsHomePage retriveFooterLinks(){
