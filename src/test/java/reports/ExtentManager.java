@@ -1,4 +1,4 @@
-package hooks;
+package reports;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;

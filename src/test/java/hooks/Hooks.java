@@ -10,10 +10,11 @@ import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import reports.ExtentManager;
 
 import java.util.Properties;
 
-import static hooks.ExtentManager.attachScreenshotToReport;
+import static reports.ExtentManager.attachScreenshotToReport;
 
 public class Hooks {
 
